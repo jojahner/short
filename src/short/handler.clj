@@ -1,8 +1,9 @@
 (ns short.handler
+  (:use compojure.core)
   (:require [short.views :as views]
-            [compojure.core :refer :all]
             [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [ring.adapter.jetty :as jetty]))
 
 (defroutes app-routes
   (GET "/"
@@ -22,3 +23,8 @@
 
 (def app
   (handler/site app-routes))
+
+; Server
+(defn -main []
+  (let [port (Integer/parseInt (get (System/getenv) "PORT" "5000"))]
+    (jetty/run-jetty app-routes {:port port})))
