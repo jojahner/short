@@ -70,7 +70,8 @@
 (defn redirct-to-url
   [hashid]
   (let [{url :url} (db/get-url-from-hashid hashid)]
-    (response/redirect url)))
+     {:status 302
+            :headers {"Location" url}}))
 
 (defn about []
   (page/html5
