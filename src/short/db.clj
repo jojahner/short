@@ -21,7 +21,7 @@
                   (sql/with-query-results res
                     ["select url from urls where id = ?" url-id]
                     (doall res)))]
-    (assert (= (count results) 1))
+    (assert (> (count results) 0))
     (first results)))
 
 (defn get-url-from-hashid
