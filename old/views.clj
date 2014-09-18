@@ -55,20 +55,22 @@
     js-includes))
 
 (defn add-url-result
-  [url]
-  (page/html5
-    (page-header "Short")
-    [:div.container
-      [:div.jumbotron
-        [:a.text-center {:href url}
-          [:h1.result.text-center url]]
-        "&nbsp;"]]
-    js-includes))
+  [{:keys [url]}]
+  (let [hashid (db/add-url url)
+        url (str "http://localhost:3000/r/" hashid)]
+    (page/html5
+      (page-header "Short")
+      [:div.container
+        [:div.jumbotron
+          [:a.text-center {:href url}
+            [:h1.result.text-center url] ]
+          "&nbsp;"]]
+     js-includes)))
 
 (defn redirct-to-url
   [hashid]
   (let [{url :url} (db/get-url-from-hashid hashid)]
-     {:status 302 :headers {"Location" "http://somewhere.com"}}))
+    (response/redirect url)))
 
 (defn about []
   (page/html5

@@ -1,4 +1,4 @@
-(ns short.hashid)
+(ns short.lib.hashid)
 
 ; defining some constants
 (def -base-alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
