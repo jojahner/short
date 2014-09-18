@@ -57,7 +57,7 @@
 (defn add-url-result
   [{:keys [url]}]
   (let [hashid (db/add-url url)
-        url (str "http://localhost:3000/r/" hashid)]
+        url (str "http://shrrt.herokuapp.com/r/" hashid)]
     (page/html5
       (page-header "Short")
       [:div.container
