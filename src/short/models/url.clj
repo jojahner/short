@@ -11,7 +11,7 @@
         id (get (first entry) :id)]
     (hashid/encode id)))
 
-(defn find
+(defn show
   [hashid]
   (let [id (hashid/decode hashid)
         entry (sql/query spec ["SELECT url FROM urls WHERE id = ?" id])]
