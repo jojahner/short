@@ -18,6 +18,10 @@
   (GET "/about"
        []
        (views/about))
+
+  (GET "/login/"
+       []
+       {:status 302 :headers {"Location" "http://somewhere.com"}})
   (route/resources "/")
   (route/not-found "Not Found"))
 
