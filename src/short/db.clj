@@ -12,6 +12,7 @@
                   (sql/insert-record :urls
                                      {:url url}))]
     (assert (= (count results) 1))
+    (println results)
     (hashid/encode (first (vals results)))))
 
 (defn get-entry-from-hashid
