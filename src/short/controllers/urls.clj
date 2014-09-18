@@ -8,7 +8,7 @@
 (defn show
   [id]
   {:status 302
-   :headers {"Location" (model/show id)}})
+   :headers {"Location" (model/find id)}})
 
 (defn create
   [url]
