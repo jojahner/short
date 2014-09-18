@@ -14,7 +14,7 @@
     (assert (= (count results) 1))
     (hashid/encode (first (vals results)))))
 
-(defn get-url-from-hashid
+(defn get-entry-from-hashid
   [hashid]
   (let [url-id (hashid/decode hashid)
         results (sql/with-connection db-spec
@@ -23,3 +23,7 @@
                     (doall res)))]
     (assert (= (count results) 1))
     (first results)))
+
+(defn get-url-from-hashid
+  [hashid]
+  (let [{url :url} (get-entry-from-hashid hashid)] url))

@@ -1,6 +1,7 @@
 (ns short.handler
   (:use compojure.core)
-  (:require [short.views :as views]
+  (:require [short.db :as db]
+            [short.views :as views]
             [compojure.handler :as handler]
             [compojure.route :as route]
             [ring.adapter.jetty :as jetty]))
@@ -11,17 +12,16 @@
        (views/home))
   (POST "/"
         {params :params}
-        (views/add-url-result params))
+        (let [{url :url} params
+              hashid (db/add-url url)
+              url (str "http://shrrt.herokuapp.com/r/" hashid)]
+          (views/add-url-result url)))
   (GET "/r/:hashid"
         [hashid]
-        (views/redirct-to-url hashid))
+        {:status 302 :headers {"Location" (str (db/get-url-from-hashid hashid))}})
   (GET "/about"
        []
        (views/about))
-
-  (GET "/login/"
-       []
-       {:status 302 :headers {"Location" "http://somewhere.com"}})
   (route/resources "/")
   (route/not-found "Not Found"))
 

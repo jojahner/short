@@ -55,23 +55,20 @@
     js-includes))
 
 (defn add-url-result
-  [{:keys [url]}]
-  (let [hashid (db/add-url url)
-        url (str "http://shrrt.herokuapp.com/r/" hashid)]
-    (page/html5
-      (page-header "Short")
-      [:div.container
-        [:div.jumbotron
-          [:a.text-center {:href url}
-            [:h1.result.text-center url] ]
-          "&nbsp;"]]
-     js-includes)))
+  [url]
+  (page/html5
+    (page-header "Short")
+    [:div.container
+      [:div.jumbotron
+        [:a.text-center {:href url}
+          [:h1.result.text-center url]]
+        "&nbsp;"]]
+    js-includes))
 
 (defn redirct-to-url
   [hashid]
   (let [{url :url} (db/get-url-from-hashid hashid)]
-     {:status 302
-            :headers {"Location" url}}))
+     {:status 302 :headers {"Location" "http://somewhere.com"}}))
 
 (defn about []
   (page/html5
