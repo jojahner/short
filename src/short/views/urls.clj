@@ -7,7 +7,7 @@
   [url]
   (layout/common "short"
                  [:div.jumbotron
-                   [:a.text-center {:href url}
+                   [:a.text-center {:href (str "http://shrrt.herokuapp.com/r/" url)}
                      [:h1.result.text-center (str "http://shrrt.herokuapp.com/r/" url)]]
                    "&nbsp;"]))
 
