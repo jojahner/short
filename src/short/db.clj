@@ -22,6 +22,7 @@
                     ["select url from urls where id = ?" url-id]
                     (doall res)))]
     (assert (> (count results) 0))
+    (println results)
     (first results)))
 
 (defn get-url-from-hashid
