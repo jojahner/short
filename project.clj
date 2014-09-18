@@ -10,6 +10,7 @@
   :plugins [[lein-ring "0.8.11"]]
   :ring {:handler short.handler/app}
   :main short.handler
+  :min-lein-version "2.0.0"
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring-mock "0.1.5"]]}})
