@@ -1,0 +1,20 @@
+{% extends "layout/application.html" %}
+{% block content %}
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1>"Shorten your URL"</h1>
+      <p>just enter the URL you want to shorten in the field below and press 'submit'</p>
+    </div>
+  </div>
+  <div class="container">
+    <form action="/" method="POST">
+      <div class="col-xs-12 col-md-11">
+        <input type="text" class="form-control url" placeholder="https://example.com" name="url">
+      </div>
+      <div class="col-xs-6 col-md-1">
+        <button class="btn btn-info btn-lg" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

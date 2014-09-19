@@ -1,8 +1,6 @@
 (ns short.controllers.urls
   (:require [compojure.core :refer [defroutes GET POST]]
-            [clojure.string :as str]
-            [ring.util.response :as ring]
-            [short.views.urls :as view]
+            [selmer.parser :refer [render-file]]
             [short.models.url :as model]))
 
 (defn show
@@ -12,7 +10,7 @@
 
 (defn create
   [url]
-  (view/create (model/create url)))
+  (render-file "urls/create.html" {:hashid (model/create url)}))
 
 (defroutes routes
   (POST "/"      [url] (create url))

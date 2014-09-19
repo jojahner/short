@@ -5,7 +5,6 @@
             [compojure.handler :as handler]
             [short.controllers.static :as static]
             [short.controllers.urls :as urls]
-            [short.views.layout :as layout]
             [short.models.migration :as schema])
   (:gen-class))
 
