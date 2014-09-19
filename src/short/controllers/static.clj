@@ -1,15 +1,7 @@
 (ns short.controllers.static
   (:require [compojure.core :refer [defroutes GET]]
-            [clojure.string :as str]
-            [ring.util.response :as ring]
-            [short.views.static :as view]))
-
-(defn home []
-  (view/home))
-
-(defn about []
-  (view/about))
+            [selmer.parser :refer [render-file]]))
 
 (defroutes routes
-  (GET "/"      [_] (home))
-  (GET "/about" [_] (about)))
+  (GET "/"      [_] (render-file "static/home.html" {}))
+  (GET "/about" [_] (render-file "static/about.html" {})))

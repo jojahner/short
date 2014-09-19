@@ -17,7 +17,11 @@
 
 (def application (handler/site routes))
 
+(defn init []
+  (selmer.parser/set-resource-path! (clojure.java.io/resource "short/views/")))
+
 (defn start [port]
+  (init)
   (ring/run-jetty application {:port port
                                :join? false}))
 (defn -main []
