@@ -6,7 +6,6 @@
                  [postgresql "9.1-901-1.jdbc4"]
                  [ring/ring-jetty-adapter "1.3.1"]
                  [compojure "1.1.9"]
-                 [hiccup "1.0.5"]
                  [selmer "0.7.1"]]
   :plugins [[lein-ring "0.8.11"]]
   :ring {:init short.app/init
