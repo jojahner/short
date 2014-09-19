@@ -9,13 +9,14 @@
       first :count pos?))
 
 (defn migrate []
-  (when (not (migrated?))
-    (print "Creating database structure...") (flush)
-    (sql/db-do-commands url/spec
-                        (sql/create-table-ddl
-                         :urls
-                         [:id :serial "PRIMARY KEY"]
-                         [:url :varchar "NOT NULL"]
-                         [:created_at :timestamp
-                          "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]))
+  (when-not (migrated?)
+    (print "Creating database structure...")
+    (flush)
+    (sql/db-do-commands
+     url/spec
+      (sql/create-table-ddl
+        :urls
+        [:id :serial "PRIMARY KEY"]
+        [:url :varchar "NOT NULL"]
+        [:created_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]))
     (println " done")))

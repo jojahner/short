@@ -1,7 +1,8 @@
 (ns short.lib.hashid)
 
 ; defining some constants
-(def -base-alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+(def -base-alphabet
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 (def -separators "jbD4w")
 (def -separator-pattern (re-pattern (str "[" -separators "]")))
 (def -alphabet (clojure.string/replace -base-alphabet -separator-pattern ""))
@@ -44,24 +45,31 @@
          number id]
     (if (< number 1)
       (-generate-result-string result)
-      (recur (-cons-with-nth-alphabet result (rem number (count alphabet)) alphabet)
+      (recur (-cons-with-nth-alphabet result
+                                      (rem number (count alphabet)) alphabet)
              (quot number (count alphabet))))))
 
 (defn -decode-hashid
   [hashid
-   alphabet]
+   ^String alphabet]
   (reduce
     (fn [result number]
       (+ (* (count -alphabet) result) (.indexOf alphabet (str number))))
     0
     hashid))
 
+(defn -get-random-separator
+  []
+  (nth -separators (rand-int (count -separators))))
+
 ; public methods
 (defn encode
   "Encodes an id to a Hashid"
   [id]
   (let [seed (rand-int 1000)]
-    (str (-generate-hashid seed -alphabet) (nth -separators (rand-int (count -separators))) (-generate-hashid id (-random-alphabet seed)))))
+    (str (-generate-hashid seed -alphabet)
+         (-get-random-separator)
+         (-generate-hashid id (-random-alphabet seed)))))
 
 (defn decode
   "Decodes a Hashid to an id (Horner's method)"
@@ -70,12 +78,3 @@
         id-hashid (last (clojure.string/split hashid -separator-pattern))
         seed (-decode-hashid seed-hashid -alphabet)]
     (-decode-hashid id-hashid (-random-alphabet seed))))
-
-; TODO
-; Im augenblick wird das alphabet jedes mal mit einem random seed reshuffled
-; besser waere es ein default seed zu nehmen und und das alpahabet bei jedem zugriff neu zu -shuffle-string
-; dadurch gibt es nurnoch eine id <-> hashid und nicht wie jetzt ne ganze menge
-
-
-
-

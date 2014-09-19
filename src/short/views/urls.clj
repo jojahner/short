@@ -3,11 +3,14 @@
             [hiccup.page :as page]
             [hiccup.element :as elem]))
 
+(defn show-url-path
+  [id]
+  (str "http://shrrt.herokuapp.com/r/" id))
+
 (defn create
-  [url]
+  [hashid]
   (layout/common "short"
                  [:div.jumbotron
-                   [:a.text-center {:href (str "http://shrrt.herokuapp.com/r/" url)}
-                     [:h1.result.text-center (str "http://shrrt.herokuapp.com/r/" url)]]
+                   [:a.text-center {:href (show-url-path hashid)}
+                     [:h1.result.text-center (show-url-path hashid)]]
                    "&nbsp;"]))
-

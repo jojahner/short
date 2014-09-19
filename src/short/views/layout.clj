@@ -2,21 +2,29 @@
   (:require [hiccup.page :as page]
             [hiccup.element :as elem]))
 
+(def css-files
+  '("https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"
+    "/stylesheets/base.css"))
+
+(def js-files
+  '("https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
+    "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"))
+
 (def js-includes
-  (list (page/include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
-        (page/include-js "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")))
+  (apply page/include-js js-files))
 
 (def css-includes
-  (list (page/include-css "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
-        (page/include-css "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css")
-        (page/include-css "/stylesheets/base.css")))
+  (apply hiccup.page/include-css css-files))
 
 (def nav-bar-top
   [:nav.navbar.navbar-default.navbar-fixed-top {:role "navigation"}
     [:div.container
       [:div.navigation
         [:div.navbar-header
-          [:button.navbar-toggle.collapsed {:type "button" :data-toggle "collapse" :data-target ".navbar-collapse"}
+          [:button.navbar-toggle.collapsed {:type "button"
+                                            :data-toggle "collapse"
+                                            :data-target ".navbar-collapse"}
             [:span.sr-only "Toggle navigation"]
             [:span.icon-bar]
             [:span.icon-bar]

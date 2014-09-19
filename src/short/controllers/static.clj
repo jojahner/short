@@ -11,5 +11,5 @@
   (view/about))
 
 (defroutes routes
-  (GET "/"     [] (view/home))
-  (GET "/about" [] (view/about)))
+  (GET "/"      [_] (home))
+  (GET "/about" [_] (about)))
