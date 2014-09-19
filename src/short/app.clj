@@ -1,4 +1,4 @@
-(ns short.web
+(ns short.app
   (:require [compojure.core :refer [defroutes]]
             [ring.adapter.jetty :as ring]
             [compojure.route :as route]

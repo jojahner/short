@@ -8,8 +8,8 @@
                  [compojure "1.1.8"]
                  [hiccup "1.0.5"]]
   :plugins [[lein-ring "0.8.11"]]
-  :ring {:handler short.web/application}
-  :main ^:skip-aot short.web
+  :ring {:handler short.app/application}
+  :main ^:skip-aot short.app
   :uberjar-name "short-standalone.jar"
   :min-lein-version "2.0.0"
   :profiles
