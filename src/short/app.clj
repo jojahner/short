@@ -17,7 +17,7 @@
 (def application (handler/site routes))
 
 (defn init []
-  (selmer.parser/set-resource-path! (clojure.java.io/resource "short/views/")))
+  (selmer.parser/set-resource-path! (clojure.java.io/resource "templates/")))
 
 (defn start [port]
   (init)
