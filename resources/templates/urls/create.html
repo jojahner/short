@@ -4,9 +4,11 @@
 {% endblock %}
 {% block content %}
 <div class="jumbotron">
-  <a href="http://amsf.de/r/{{hashid}}" class="text-center">
-    <h1 class="result text-center">http://amsf.de/r/{{hashid}}</h1>
-  </a>
-  <input type="text" value="http://amsf.de/r/{{hashid}}" class="url" data-do-highlight="true">
+  <div class="container">
+    <input type="text" value="http://amsf.de/r/{{hashid}}" class="form-control url" data-do-highlight="true" id="result-url">
+  </div>
 </div>
+{% endblock %}
+{% block javascript %}
+$('#result-url').select();
 {% endblock %}
