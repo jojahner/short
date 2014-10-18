@@ -14,4 +14,4 @@
 
 (defroutes routes
   (POST "/"      [url] (create url))
-  (GET  "/r/:id" [id]  (show id)))
+  (GET  "/:id" [id]  (show id)))

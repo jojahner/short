@@ -1,11 +1,12 @@
 {% extends "layout/application.html" %}
 {% block title %}
-  Short
+  amsf.de shortener
 {% endblock %}
 {% block content %}
 <div class="jumbotron">
-  <a href="http://shrrt.herokuapp.com/r/{{hashid}}" class="text-center">
-    <h1 class="result text-center">http://shrrt.herokuapp.com/r/{{hashid}}</h1>
+  <a href="http://amsf.de/r/{{hashid}}" class="text-center">
+    <h1 class="result text-center">http://amsf.de/r/{{hashid}}</h1>
   </a>
+  <input type="text" value="http://amsf.de/r/{{hashid}}" class="url" data-do-highlight="true">
 </div>
 {% endblock %}

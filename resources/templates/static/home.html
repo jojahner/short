@@ -1,6 +1,6 @@
 {% extends "layout/application.html" %}
 {% block title %}
-  Short
+  amsf.de shortener
 {% endblock %}
 {% block content %}
   <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="container">
-    <form id="create-form" action="/" method="POST">
+    <form id="create-form" action="/r/" method="POST">
       <div class="col-xs-12 col-md-11">
         <input id="url-input" type="text" class="form-control url" placeholder="https://example.com" name="url">
       </div>
